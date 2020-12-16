@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  
+    <title>Basic template</title>
+    <style>body{padding:0;margin:0;background:#333;}h1{padding:0;margin:0;font-size:50%;color:white;}.mouse{font-size:50%;background: white;}</style>
+</head>
+<body>
+
+
+<!-- MAP[START] -->
+<h1>Basic template</h1>
+<div id="myMap" style='width:600px;height:450px;'>
+	
+</div>
+<!-- <div id="ima"></div> -->
+<div id='printoutPanel'></div>
+        <div id='directionsInputContainer'></div>
+
+<div id="input">
+	<p id="comment"></p>
+	<input type="text" id="memo" size="60">
+	<!-- <button id="input_btn">現在地登録</button> -->
+</div>
+<!-- MAP[END] -->
+
+
+<!-- [ MapTypeId ] https://msdn.microsoft.com/en-us/library/mt712700.aspx -->
+<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AnKzuVIOH5FqV0e6C6QhUkTWWWT-9TW2bOerE8fQcgVKqg15GjdnBsu3BVbsCTFJ' async defer></script>
+<script>
+
+    //Initialization processing
+    function GetMap() {
+        const map = new Microsoft.Maps.Map('#myMap', {
+            center: new Microsoft.Maps.Location(35.5987465, 139.735357), //Location center position
+            mapTypeId: Microsoft.Maps.MapTypeId.streetside, //Type: [load, aerial,canvasDark,canvasLight,birdseye,grayscale,streetside]
+            zoom: 18 //Zoom:1=zoomOut, 20=zoomUp[ 1~20 ]
+        });
+         Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
+                    var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+                    directionsManager.setRenderOptions({ itineraryContainer: document.getElementById('printoutPanel') });
+                    directionsManager.showInputPanel('directionsInputContainer');
+                });
+    }
+   
+                
+   
+
+  
+
+</script>
+   <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=YourBingMapsKey&callback=loadMapScenario' async defer></script>
+
+
+</body>
+</html>
+<!-- 
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>directionsinputpanelHTML</title>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+        <style type='text/css'>body{margin:0;padding:0;overflow:hidden;font-family:'Segoe UI',Helvetica,Arial,Sans-Serif}</style>
+    </head>
+    <body>
+        <div id='printoutPanel'></div>
+        <div id='directionsInputContainer'></div>
+        
+        <div id='myMap' style='width: 100vw; height: 100vh;'></div>
+        <script type='text/javascript'>
+            function loadMapScenario() {
+                var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+                    /* No need to set credentials if already passed in URL */
+                    center: new Microsoft.Maps.Location(47.606209, -122.332071),
+                    zoom: 12
+                });
+                Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
+                    var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+                    directionsManager.setRenderOptions({ itineraryContainer: document.getElementById('printoutPanel') });
+                    directionsManager.showInputPanel('directionsInputContainer');
+                });
+                
+            }
+        </script>
+        <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=YourBingMapsKey&callback=loadMapScenario' async defer></script>
+    </body>
+</html> -->
